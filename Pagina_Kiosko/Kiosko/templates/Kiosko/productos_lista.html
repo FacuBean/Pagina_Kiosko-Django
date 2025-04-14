@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Productos{% endblock %}
+
+{% block content %}
+<h2>Lista de Productos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.nombre_producto }}</td>
+            <td>${{ producto.precio }}</td>
+            <td>{{ producto.stock }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="center">No hay productos cargados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class='botones-contenedor'> 
+    <a href="{% url 'agregar_producto' %}" class="boton">Agregar Producto</a>
+    <a href="{% url 'buscar_producto' %}" class="boton">Buscar Productos</a>
+</div>
+{% endblock %}

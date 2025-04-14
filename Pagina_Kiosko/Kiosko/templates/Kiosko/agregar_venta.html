@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Nueva Venta{% endblock %}
+
+{% block content %}
+    <h2>Registrar Venta</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="boton">Guardar</button>
+    </form>
+    <a href="{% url 'lista_ventas' %}" class="boton">Cancelar</a>
+{% endblock %}

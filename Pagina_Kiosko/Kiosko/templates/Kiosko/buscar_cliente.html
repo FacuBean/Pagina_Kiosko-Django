@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar Cliente{% endblock %}
+
+{% block content %}
+<h2>Buscar Cliente</h2>
+
+<form method="get" action="{% url 'buscar_cliente' %}">
+    <input type="text" name="q" placeholder="Buscar por nombre, email o teléfono" value="{{ query }}">
+    <button type="submit" class="boton">Buscar</button>
+</form>
+
+{% if clientes %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.telefono }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="center">No se encontraron clientes.</p>
+{% endif %}
+{% endblock %}

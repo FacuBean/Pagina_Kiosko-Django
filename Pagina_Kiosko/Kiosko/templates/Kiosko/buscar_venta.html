@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar Venta{% endblock %}
+
+{% block content %}
+<h2>Buscar Venta</h2>
+
+<form method="get" action="{% url 'buscar_venta' %}">
+    <input type="text" name="q" placeholder="Buscar por cliente, producto o fecha" value="{{ query }}">
+    <button type="submit" class="boton">Buscar</button>
+</form>
+
+{% if ventas %}
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Fecha</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for venta in ventas %}
+            <tr>
+                <td>{{ venta.cliente.nombre }}</td>
+                <td>{{ venta.producto.nombre_producto }}</td>
+                <td>{{ venta.fecha }}</td>
+                <td>{{ venta.cantidad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p class="center">No se encontraron ventas.</p>
+{% endif %}
+{% endblock %}

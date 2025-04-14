@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Clientes{% endblock %}
+
+{% block content %}
+<h2>Lista de Clientes</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cliente in clientes %}
+        <tr>
+            <td>{{ cliente.nombre }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.telefono }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="center">No hay clientes cargados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="botones-contenedor">
+    <a href="{% url 'agregar_cliente' %}" class="boton">Agregar Cliente</a>
+    <a href="{% url 'buscar_cliente' %}" class="boton">Buscar Cliente</a>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Buscar Producto{% endblock %}
+
+{% block content %}
+<h2>Buscar Producto</h2>
+
+<form method="get" action="{% url 'buscar_producto' %}">
+    <input type="text" name="q" value="{{ query }}" placeholder="Buscar por nombre de producto">
+    <button type="submit" class="boton">Buscar</button>
+</form>
+
+{% if productos %}
+    <h3>Resultados de búsqueda:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in productos %}
+            <tr>
+                <td>{{ producto.nombre_producto }}</td>
+                <td>${{ producto.precio }}</td>
+                <td>{{ producto.stock }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No se encontraron productos que coincidan con "{{ query }}".</p>
+{% endif %}
+{% endblock %}
