@@ -1,4 +1,3 @@
-
 *.log
 *.pot
 *.pyc
@@ -6,6 +5,7 @@ __pycache__/
 db.sqlite3
 /media
 /static
+Pagina_Kiosko/media/
 
 venv/
 .env/
@@ -15,18 +15,17 @@ venv/
 Thumbs.db
 
 Consigna.txt
+Consigna final.txt
 lista de pasos.txt
-
+lista de pasos final.txt
 
 .vscode/
 .idea/
-
 
 *.egg-info/
 dist/
 build/
 *.egg
-
 
 .mypy_cache/
 .pytest_cache/
