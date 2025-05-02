@@ -13,6 +13,7 @@
             <th>Precio</th>
             <th>Cliente</th>
             <th>Fecha</th>
+            <th>Acciones</th> <!-- Nueva columna -->
         </tr>
     </thead>
     <tbody>
@@ -21,12 +22,20 @@
             <td>{{ venta.producto.nombre_producto }}</td>
             <td>{{ venta.cantidad }}</td>
             <td>{{ venta.producto.precio }}</td>
-            <td>{{ venta.cliente.nombre }}</td>
+            <td>
+                {{ venta.cliente.nombre }}
+                <br>
+                <a href="{% url 'detalle_cliente' venta.cliente.pk %}" class="boton secundario">Leer más</a>
+            </td>
             <td>{{ venta.fecha }}</td>
+            <td>
+                <a href="{% url 'editar_venta' venta.pk %}" class="boton">Editar</a>
+                <a href="{% url 'borrar_venta' venta.pk %}" class="boton borrar">Eliminar</a>
+            </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="5" class="center">No hay ventas cargadas.</td>
+            <td colspan="6" class="center">No hay ventas cargadas.</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -6,7 +6,15 @@
     <h2>Registrar Venta</h2>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div>
+            {{ form.producto }}
+        </div>
+        <div>
+            {{ form.cantidad }}
+        </div>
+        <div>
+            {{ form.cliente }}
+        </div>
         <button type="submit" class="boton">Guardar</button>
     </form>
     <a href="{% url 'lista_ventas' %}" class="boton">Cancelar</a>

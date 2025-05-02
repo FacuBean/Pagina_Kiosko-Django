@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Perfil del Cliente</h2>
+<div style="margin: 20px;">
+    <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+    <p><strong>Email:</strong> {{ cliente.email }}</p>
+    <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+    <p><strong>Dirección:</strong> {{ cliente.direccion }}</p>
+</div>
+<a href="{% url 'lista_ventas' %}" class="boton">Volver a ventas</a>
+{% endblock %}

@@ -3,8 +3,10 @@
 {% block content %}
     <h2>Bienvenido a la Tienda</h2>
     <div class="botones-contenedor">
-        <a href="{% url 'lista_productos' %}" class="boton">Ver Productos</a> |
-        <a href="{% url 'lista_ventas' %}" class="boton">Ver Ventas</a> |
-        <a href="{% url 'lista_clientes' %}" class="boton">Ver Clientes</a>
+        <a href="{% url 'lista_productos' %}" class="boton">Ver Productos</a>
+        {% if user.is_superuser %}
+            | <a href="{% url 'lista_ventas' %}" class="boton">Ver Ventas</a> |
+            <a href="{% url 'lista_clientes' %}" class="boton">Ver Clientes</a>
+        {% endif %}
     </div>
 {% endblock %}

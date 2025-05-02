@@ -11,6 +11,9 @@
             <th>Nombre</th>
             <th>Precio</th>
             <th>Stock</th>
+            {% if user.is_superuser %}
+                <th>Acciones</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -19,16 +22,26 @@
             <td>{{ producto.nombre_producto }}</td>
             <td>${{ producto.precio }}</td>
             <td>{{ producto.stock }}</td>
+            {% if user.is_superuser %}
+                <td>
+                    <a href="{% url 'editar_producto' producto.id %}" class="boton">Editar</a>  
+                    <a href="{% url 'borrar_producto' producto.id %}" class="boton borrar" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar</a>
+                </td>
+            {% endif %}
         </tr>
         {% empty %}
         <tr>
-            <td colspan="3" class="center">No hay productos cargados.</td>
+            <td colspan="{% if user.is_superuser %}4{% else %}3{% endif %}" class="center">No hay productos cargados.</td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-<div class='botones-contenedor'> 
-    <a href="{% url 'agregar_producto' %}" class="boton">Agregar Producto</a>
-    <a href="{% url 'buscar_producto' %}" class="boton">Buscar Productos</a>
+<div class="botones-contenedor">
+    {% if user.is_superuser %}
+        <a href="{% url 'agregar_producto' %}" class="boton">Agregar Producto</a>
+        {% endif %}
+        <a href="{% url 'buscar_producto' %}" class="boton">Buscar Producto</a>
 </div>
+        
+
 {% endblock %}

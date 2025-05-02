@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrarse{% endblock %}
+
+{% block content %}
+  <h2>Registro</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+
+    <h3>Datos de Usuario</h3>
+    {{ form_user.as_p }}
+
+    <h3>Perfil</h3>
+    {{ form_perfil.as_p }}
+
+    {% if form_user.errors %}
+      <div style="color:red;">
+        <h4>Errores de Usuario:</h4>
+        {{ form_user.errors }}
+      </div>
+    {% endif %}
+
+    {% if form_perfil.errors %}
+      <div style="color:red;">
+        <h4>Errores de Perfil:</h4>
+        {{ form_perfil.errors }}
+      </div>
+    {% endif %}
+
+    <button type="submit">Registrarse</button>
+  </form>
+{% endblock %}

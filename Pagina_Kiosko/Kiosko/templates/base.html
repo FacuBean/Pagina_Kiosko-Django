@@ -5,9 +5,13 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            height: 100%;
             margin: 0;
             padding: 0;
             background-color: #f7f7f7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header, footer {
@@ -24,6 +28,7 @@
         }
 
         main {
+            flex: 1;
             padding: 40px;
         }
 
@@ -85,8 +90,31 @@
         <nav>
             <a href="{% url 'home' %}">Inicio</a> |
             <a href="{% url 'lista_productos' %}">Productos</a> |
-            <a href="{% url 'lista_ventas' %}">Ventas</a> |
-            <a href="{% url 'lista_clientes' %}">Clientes</a>
+                {% if user.is_superuser %}
+                <a href="{% url 'lista_ventas' %}">Ventas</a> |
+                <a href="{% url 'lista_clientes' %}">Clientes</a> |
+            {% endif %}
+            <a href="{% url 'acerca_de_mi' %}">About</a> |
+            {% if user.is_authenticated %}
+                {% if not user.is_superuser %}
+                    <a href="{% url 'perfil' %}">Perfil</a> |
+                {% endif %}
+                {% if not user.is_superuser%}
+                <a href="{% url 'enviar_mensaje' %}">Mensajes</a> |
+                <a href="{% url 'ver_mis_mensajes' %}" style="color: {% if mensajes_con_respuesta > 0 %}red{% else %}inherit{% endif %};">
+                    Ver Mensajes |
+                    {% if mensajes_con_respuesta > 0 %} (¡Nuevo!) {% endif %}
+                {% endif %}
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; padding:0; margin:0; color:blue; text-decoration:underline; cursor:pointer;">
+                        Cerrar sesión
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Iniciar sesión</a> |
+                <a href="{% url 'signup' %}">Registrarse</a>
+            {% endif %}
         </nav>
     </header>
 

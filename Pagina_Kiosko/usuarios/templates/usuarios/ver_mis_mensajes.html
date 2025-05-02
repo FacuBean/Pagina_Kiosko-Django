@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Mis Mensajes</h2>
+
+  <ul>
+    {% for mensaje in mensajes %}
+      <li>
+        <p><strong>De:</strong> {{ mensaje.remitente }}</p>
+        <p><strong>Mensaje:</strong> {{ mensaje.contenido }}</p>
+        <p><strong>Fecha de Envío:</strong> {{ mensaje.fecha_envio }}</p>
+
+        {% if mensaje.respuesta %}
+          <p><strong>Respuesta:</strong> {{ mensaje.respuesta }}</p>
+          <p><strong>Fecha de Respuesta:</strong> {{ mensaje.fecha_respuesta }}</p>
+        {% else %}
+          <p><strong>Aún no hay respuesta</strong></p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
