@@ -102,8 +102,9 @@
                 {% if not user.is_superuser%}
                 <a href="{% url 'enviar_mensaje' %}">Mensajes</a> |
                 <a href="{% url 'ver_mis_mensajes' %}" style="color: {% if mensajes_con_respuesta > 0 %}red{% else %}inherit{% endif %};">
-                    Ver Mensajes |
+                    Ver Mensajes
                     {% if mensajes_con_respuesta > 0 %} (¡Nuevo!) {% endif %}
+                </a>
                 {% endif %}
                 <form method="post" action="{% url 'logout' %}" style="display:inline;">
                     {% csrf_token %}

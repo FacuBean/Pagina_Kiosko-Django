@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Kiosko.urls')),
     path('usuarios/', include('usuarios.urls')),
-    path('mensajeria/', include('mensajeria.urls')),
 ]
 
 if settings.DEBUG:

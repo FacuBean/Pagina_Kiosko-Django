@@ -56,9 +56,7 @@ ROOT_URLCONF = 'Pagina_Kiosko.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            BASE_DIR / 'Pagina_Kiosko/mensajeria/templates',
-        ],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
